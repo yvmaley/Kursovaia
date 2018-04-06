@@ -1,0 +1,17 @@
+import socks, socket, urllib
+import urllib.request
+
+#url = "http://hss3uro2hsxfogfq.onion"
+
+def create_connection(address, timeout=None, source_address=None):
+sock = socks.socksocket()
+sock.connect(address)
+return sock
+
+socks.setdefaultproxy(socks.PROXY_TYPE_SOCKS5, "127.0.0.1", 9150, True)
+socket.socket = socks.socksocket
+socket.create_connection = create_connection
+
+with urllib.request.urlopen("http://xmh57jrzrnw6insl.onion/4a1f6b371c/search.cgi?q=drags&cmd=Search%21") as url:
+s = url.read()
+print(s)
